@@ -5,4 +5,5 @@
     "depends" : [ ],
     "repo-type" : "git",
     "repo-url" : "git://github.com/timo/ADT.git"
+    "author" : "Timo Paulssen",
 }
