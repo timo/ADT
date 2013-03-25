@@ -2,6 +2,7 @@ Algebraic Data Types
 ====================
 
 This module implements algebraic data types inspired by the Haskell syntax.
+See below for limitations of the current implementation.
 
 Here's a code example for you:
 
@@ -47,9 +48,28 @@ Here's a code example for you:
     say treemap($t2, * * 10).gist;
 
 
-When rakudo gets proper EXPORT sub handling, it'll look like this:
+Limitations
+-----------
+
+### Compile-time availability
+
+Since rakudo doesn't yet allow the EXPORT sub of a package to return a hash of things to export,
+the ADT cannot be used to define multi subs, because the symbols are not available at compile time.
+
+When EXPORT works, code like this will be possible:
 
     use ADT "data Tree = Branch Tree left, Tree right | Leaf Str storage";
     multi sub treemap(Branch $t, *&c) { ... }
     multi sub treemap(Leaf $l, *&c) { ... }
 
+### Compile-time checks
+
+
+One of the neat features of ADT is that the compiler can ensure, that the program is prepared to deal with
+every defined case (Branch or Leaf, Just or Nothing, ...). A macro can probably be devised to implement
+such a compile-time check.
+
+### "is parsed" macros
+
+When Rakudo gets support for "is parsed" macros, definitons of ADT can move from the "use" line into the
+mainline of the code, so that they look tidyer and the programmer can put comments nearby etc.
