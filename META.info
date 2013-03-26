@@ -3,7 +3,6 @@
     "version" : "0.5",
     "description" : "Algebraic Data Types inspired by Haskell.",
     "depends" : [ ],
-    "repo-type" : "git",
-    "repo-url" : "git://github.com/timo/ADT.git"
-    "author" : "Timo Paulssen",
+    "source-url" : "git://github.com/timo/ADT.git",
+    "author" : "Timo Paulssen"
 }
