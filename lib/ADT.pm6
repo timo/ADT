@@ -1,7 +1,5 @@
 module ADT;
 
-#package EXPORT::DEFAULT { };
-
 grammar hs_adt {
     has @.typevars;
     rule TOP {
@@ -171,12 +169,6 @@ sub create_adt(Str $definition) is export {
 
     %resulting-types{$adt<name>} = $container-type;
 
-    return %resulting-types;
+    return %resulting-types.values;
 }
 
-
-#create_adt("Tree[::A] = Branch Tree[A] left, Tree[A] right | Leaf A storage");
-
-#create_adt("Either[::A, ::B] = Left A | Right B");
-
-#create_adt("Faliure = Left Str bar | Right Str Bar");
