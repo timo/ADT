@@ -53,10 +53,10 @@ Limitations
 
 ### Compile-time availability
 
-Since rakudo doesn't yet allow the EXPORT sub of a package to return a hash of things to export,
-the ADT cannot be used to define multi subs, because the symbols are not available at compile time.
+Rakudo currently has a bug in EXPORT handling, so the ADT cannot be used to define multi subs or place
+type restrictions on variables.
 
-When EXPORT works, code like this will be possible:
+When EXPORT works properly, code like this will be possible:
 
     use ADT "data Tree = Branch Tree left, Tree right | Leaf Str storage";
     multi sub treemap(Branch $t, *&c) { ... }
