@@ -1,7 +1,5 @@
 use Test;
 
-use ADT "foo bar";
-
 eval_lives_ok q{
     use ADT "Tree = Branch Tree left, Tree right | Leaf Str storage";
     my Tree $a = Tree.new-leaf("Hello");

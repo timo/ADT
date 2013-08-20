@@ -45,7 +45,7 @@ module ADT {
     # - one class for each Constructor as part of the containing class, i.e. Tree::Branch, Tree::Leaf
     # - one subset for each Constructor of the container class that validates the .definedness of the constructor attribute
 
-    sub create_adt(Str $definition) is export {
+    our sub create_adt(Str $definition) is export {
         my $adt = hs_adt.parse($definition, :actions(hs_adt_actions.new)).ast;
 
         # create the type object for the containing class
