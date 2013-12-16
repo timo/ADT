@@ -6,10 +6,10 @@ module ADT {
             $<name>=<.ident> <params> '=' <definers>
         }
         rule params {
-            '[' ~ ']' [ '::' $<typevar>=<.ident> { @.typevars.push($<typevar>.Str) }]+ % ',' |
+            '[' ~ ']' [ '::' $<typevar>=<.ident> { @.typevars.push($<typevar>.Str) }]+ % ',' | ''
         }
         rule parameters {
-            '[' ~ ']' [$<typevar>=<.ident> { $0 ~~ @.typevars }]+ |
+            '[' ~ ']' [$<typevar>=<.ident> { $0 ~~ @.typevars }]+ | ''
         }
         rule definers {
             [ <definition> ]+ % '|'
