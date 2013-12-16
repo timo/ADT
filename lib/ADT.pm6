@@ -114,7 +114,7 @@ module ADT {
                 $container-type.HOW.add_multi_method($container-type, "new-$name.lc()", eas
                         "method ($signature) \{\n" ~
                         "    say 'the named thingie was called';\n" ~
-                        "    return self.bless(*, :" ~ $name.lc ~ "(::<$name>.new($signature)))\n" ~
+                        "    return self.bless(:" ~ $name.lc ~ "(::<$name>.new($signature)))\n" ~
                         "}"
                     );
             }
@@ -126,7 +126,7 @@ module ADT {
                 $container-type.HOW.add_multi_method($container-type, "new-$name.lc()", eas
                         "method ($pos-signature) \{\n" ~
                         "    say 'the positional thingie was called';\n" ~
-                        "    return self.bless(*, :" ~ $name.lc ~ "(::<$name>.new($named-signature)))\n" ~
+                        "    return self.bless(:" ~ $name.lc ~ "(::<$name>.new($named-signature)))\n" ~
                         "}"
                     );
             }
@@ -136,9 +136,9 @@ module ADT {
             # it should take named and positional arguments
             $container-type.HOW.add_multi_method($container-type, "new-$name.lc()", method (|c) {
                 if +c.hash {
-                    self.bless(*, |($name.lc => $type.new(|c)))
+                    self.bless(|($name.lc => $type.new(|c)))
                 } elsif c.list -> @args {
-                    self.bless(*, |($name.lc => $type.new(|(%handlers{$name} Z=> @args).hash)))
+                    self.bless(|($name.lc => $type.new(|(%handlers{$name} Z=> @args).hash)))
                 }
             });
         }
