@@ -1,5 +1,4 @@
 module ADT {
-
     grammar hs_adt {
         has @.typevars;
         rule TOP {
@@ -21,14 +20,14 @@ module ADT {
 
     class hs_adt_actions {
         has @.attributes;
-        method TOP($/) { make { name => $<name>.Str, params => $<params>.ast, definers => $<definers>.ast.Array } }
-        method params($/) { make $/.Str ?? $<typevar>>>.Str.Array !! [] }
-        method parameters($/) { make $/.Str ?? make $<typevar>>>.Str.Array !! make [] }
-        method definers($/) { make $<definition>>>.ast.Array }
+        method TOP($/) { make { name => $<name>.Str, params => $<params>.ast, definers => $<definers>.ast.Array }.item }
+        method params($/) { make $/.Str ?? $<typevar>>>.Str.Array.item !! [].item }
+        method parameters($/) { make $/.Str ?? make $<typevar>>>.Str.Array.item !! make [].item }
+        method definers($/) { make $<definition>>>.ast.Array.item }
         method definition($/) {
             die "no two attributes may lowercase to the same string" if $<attrname>.lc ~~ @.attributes;
             push @.attributes, $<attrname>.lc;
-            make { constructor => $<constructor>.Str, types => ($<typedecl>>>.Str Z $<attrname>>>.Str Z $<parameters>>>.ast).Array }
+            make { constructor => $<constructor>.Str, types => ($<typedecl>>>.Str Z $<attrname>>>.Str Z $<parameters>>>.ast).Array }.item
         }
     }
 
