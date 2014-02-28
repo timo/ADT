@@ -96,9 +96,8 @@ module ADT {
                     }
                 );
 
-
+=begin comment
             # the following code causes a weeeeird error to happen.
-            #`(
             sub eas(Str $code) {
                 say $code;
                 my Mu $rv = eval $code;
@@ -129,10 +128,10 @@ module ADT {
                         "}"
                     );
             }
-            #`)
+=end comment
 
             # also, create a new-foo method to create such a value.
-            # it should take named and positional arguments
+            # it should take named or positional arguments
             $container-type.HOW.add_multi_method($container-type, "new-$name.lc()", method (|c) {
                 if +c.hash {
                     self.bless(|($name.lc => $type.new(|c)))
