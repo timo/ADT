@@ -142,8 +142,15 @@ module ADT {
             $container-type.HOW.add_multi_method($container-type, "new-$name.lc()", method (|c) {
                 if +c.hash {
                     self.bless(|($name.lc => $type.new(|c)))
-                } elsif c.list -> @args {
+                } elsif c.list == %handlers{$name}.list {
+                    my @args = c.list;
                     self.bless(|($name.lc => $type.new(|(%handlers{$name}.list Z=> @args).hash)))
+                } elsif c.list == 1 {
+                    if %handlers{$name}.list != 1 && c.list[0] ~~ Positional {
+                        self.bless(|($name.lc => $type.new(|(%handlers{$name}.list Z=> @(c.list[0])).hash)))
+                    } else {
+                        die "The subtype $name has { +%handlers{$name}.list } parameters. The single parameter ought to be Positional, but it is { c.list[0].^name }";
+                    }
                 }
             });
         }
