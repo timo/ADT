@@ -137,7 +137,7 @@ module ADT {
                 if +c.hash {
                     self.bless(|($name.lc => $type.new(|c)))
                 } elsif c.list -> @args {
-                    self.bless(|($name.lc => $type.new(|(%handlers{$name} Z=> @args).hash)))
+                    self.bless(|($name.lc => $type.new(|(%handlers{$name}.list Z=> @args).hash)))
                 }
             });
         }
