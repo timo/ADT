@@ -55,6 +55,11 @@ module ADT {
 
         my %resulting-types;
 
+        my %collisions;
+        sub collide($name, $original?) {
+            die "Colliding definitions for name $name { $original ?? "(originally $original) " !! "" }in adt $adt<name>." if %collisions{$name}++;
+        }
+
         #| create a class inside the container type for each of the constructors
         sub create_constructor($name, @attrs) {
             my $type := Metamodel::ClassHOW.new_type($name);
@@ -66,6 +71,7 @@ module ADT {
                         :has_accessor(1), :package($type)
                     ));
                 push %handlers{$name}, $aname;
+                collide($aname);
             }
 
             $type.HOW.compose($type);
@@ -88,6 +94,7 @@ module ADT {
                 :name('$.' ~ $name.lc), :type(Any), #:type($type.WHAT),
                 :has_accessor(1), :package($container-type));
 
+            collide($name.lc, $name);
             $container-type.HOW.add_attribute($container-type, $attr);
             # the constructor attribute shall handle each of the constructor's attribute
             # in the containing class
