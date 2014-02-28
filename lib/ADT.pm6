@@ -73,8 +73,8 @@ module ADT {
         }
 
         # create each constructor class first
-        my %constructors = gather for @($adt<definers>) {
-            take $_<constructor> => create_constructor($_<constructor>, $_<types>)
+        my %constructors = do for @($adt<definers>) {
+            $_<constructor> => create_constructor($_<constructor>, $_<types>)
         }
 
         # the default new method should just die.
