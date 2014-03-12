@@ -14,7 +14,7 @@ module ADT {
             [ <definition> ]+ % '|'
         }
         rule definition {
-            $<constructor>=<.ident> [ $<typedecl>=<.ident><parameters> $<attrname>=<.ident> ]+ % ','
+            $<constructor>=<.ident> [ $<typedecl>=<.ident><parameters> $<attrname>=<.ident> ]* % ','
         }
     }
 
