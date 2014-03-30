@@ -48,7 +48,7 @@ module ADT {
         my $adt = hs_adt.parse($definition, :actions(hs_adt_actions.new)).ast;
 
         # create the type object for the containing class
-        my $container-type := Metamodel::ClassHOW.new_type($adt<name>);
+        my $container-type := Metamodel::ClassHOW.new_type(name => $adt<name>);
 
         #| for each of the constructors, save what attribute names they have here
         my %handlers;
@@ -62,7 +62,7 @@ module ADT {
 
         #| create a class inside the container type for each of the constructors
         sub create_constructor($name, @attrs) {
-            my $type := Metamodel::ClassHOW.new_type($name);
+            my $type := Metamodel::ClassHOW.new_type(:$name);
 
             for @attrs -> $atype, $aname, $type-params {
                 # type-params is currently unused.
