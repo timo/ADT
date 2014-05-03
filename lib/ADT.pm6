@@ -45,7 +45,11 @@ module ADT {
     # - one subset for each Constructor of the container class that validates the .definedness of the constructor attribute
 
     our sub create_adt(Str $definition) is export {
-        my $adt = hs_adt.parse($definition, :actions(hs_adt_actions.new)).ast;
+        my $adt_parse_result = hs_adt.parse($definition, :actions(hs_adt_actions.new));
+
+        die "could not parse adt definition:" ~ "\n" ~ $definition.indent(4) unless $adt_parse_result;
+
+        my $adt = $adt_parse_result.ast;
 
         # create the type object for the containing class
         my $container-type := Metamodel::ClassHOW.new_type(name => $adt<name>);
