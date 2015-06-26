@@ -3,7 +3,7 @@ use ADT;
 plan 5;
 
 {
-    dies_ok { create_adt("arghlebarghle") }, "sanity";
+    dies-ok { create_adt("arghlebarghle") }, "sanity";
 
     ok create_adt(q:to/TREE/), "simple multiline";
         Tree = Branch Tree left, Tree right
