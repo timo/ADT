@@ -16,4 +16,4 @@ eval-lives-ok q{
     my $b = Tree.new-leaf("Goodbye"); 
 }, "two ADTs from EXPORT";
 
-done;
+done-testing;

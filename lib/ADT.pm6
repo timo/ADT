@@ -68,7 +68,7 @@ module ADT {
         sub create_constructor($name, @attrs) {
             my $type := Metamodel::ClassHOW.new_type(:$name);
 
-            for @attrs -> $atype, $aname, $type-params {
+            for @attrs -> ($atype, $aname, $type-params) {
                 # type-params is currently unused.
                 $type.HOW.add_attribute($type, Attribute.new(
                         :name('$.' ~ $aname), :type(Any), # TODO: properly look up types :type(::{$atype}),
