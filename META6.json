@@ -1,4 +1,5 @@
 {
+    "perl" : "6.*",
     "name" : "ADT",
     "version" : "0.5",
     "description" : "Algebraic Data Types inspired by Haskell.",
