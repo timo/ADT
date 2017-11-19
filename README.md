@@ -6,8 +6,10 @@ See below for limitations of the current implementation.
 
 Here's a code example for you:
 
+	use ADT; 
+	
     # define the algebraic data type
-    my $adt = q{Tree = Branch Tree left, Tree right | Leaf Str storage}
+    my $adt = q{Tree = Branch Tree left, Tree right | Leaf Str storage};
     my %res = create_adt($adt);
     
     # capture the Tree class
