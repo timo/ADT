@@ -160,7 +160,7 @@ module ADT {
         }
 
         # create a pretty-printer
-        for <perl gist> -> $methname {
+        for <raku perl gist> -> $methname {
             $container-type.HOW.add_method($container-type, $methname, method {
                     for %constructors.keys {
                         if self."$_.lc()"().defined {
